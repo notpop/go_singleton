@@ -1,7 +1,6 @@
 package designPettern
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -21,7 +20,6 @@ func getTime() time.Time {
 	return instance.time
 }
 
-func GetInstance() *singleton {
-	fmt.Printf("get instance at %s\n", getTime())
-	return instance
+func GetInstance() (*singleton, string) {
+	return instance, "get instance at" + getTime().String()
 }

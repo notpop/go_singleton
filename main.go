@@ -1,12 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"time"
 	"singleton/designPettern"
 )
 
 func test(ch chan<- interface{}) {
-	ch <- designPettern.GetInstance()
+	_, message := designPettern.GetInstance()
+	ch <- message
 }
 
 func main() {
@@ -14,9 +16,9 @@ func main() {
 	go test(ch)
 	go test(ch)
 	go test(ch)
-	<-ch
-	<-ch
-	<-ch
+	fmt.Println(<-ch)
+	fmt.Println(<-ch)
+	fmt.Println(<-ch)
 
 	time.Sleep(3 * time.Second)
 }
